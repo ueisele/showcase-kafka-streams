@@ -1,4 +1,4 @@
-rootProject.name = 'tc-paia-kafka-examples'
+rootProject.name = 'showcase-kafka-streams'
 
 dependencyResolutionManagement {
     repositories {

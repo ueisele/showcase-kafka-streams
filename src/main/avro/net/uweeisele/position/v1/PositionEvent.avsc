@@ -1,0 +1,27 @@
+{
+  "namespace": "net.uweeisele.position.v1",
+  "name": "PositionEvent",
+  "type": "record",
+  "fields": [
+    {
+      "name" : "eventId",
+      "type": {"type": "string", "logicalType": "uuid"}
+    },
+    {
+      "name": "eventTime",
+      "type": {"type": "long", "logicalType": "timestamp-micros"}
+    },
+    {
+      "name": "account",
+      "type": "net.uweeisele.account.v1.Account"
+    },
+    {
+      "name": "longitude",
+      "type": "double"
+    },
+    {
+      "name": "latitude",
+      "type": "double"
+    }
+  ]
+}

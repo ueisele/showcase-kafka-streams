@@ -8,7 +8,7 @@ plugins {
 
 apply from: "$rootDir/dependencies.gradle"
 
-group 'de.novatec.tc'
+group 'net.uweeisele.kstreams'
 version '0.1-SNAPSHOT'
 
 java {
