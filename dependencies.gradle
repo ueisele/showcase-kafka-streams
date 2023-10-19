@@ -5,14 +5,14 @@ ext {
 
 versions += [
     scala: "2.13",
-    kafka: "3.0.0",
-    confluent: "7.0.1",
-    avro: "1.10.2",
-    commonsLang: "3.12.0",
-    awaitility: "4.1.0",
+    kafka: "3.6.0",
+    confluent: "7.5.1",
+    avro: "1.11.3",
+    commonsLang: "3.13.0",
+    awaitility: "4.2.0",
     slf4j: "1.7.32",
-    junit: "5.7.2",
-    assertj: "3.20.2",
+    junit: "5.10.0",
+    assertj: "3.24.2",
     bouncycastle: "1.69"
 ]
 
@@ -35,6 +35,8 @@ libs += [
     kafka: "org.apache.kafka:kafka_${versions.scala}:${versions.kafka}",
     kafka_test: "org.apache.kafka:kafka_${versions.scala}:${versions.kafka}:test",
     kafka_test_sources: "org.apache.kafka:kafka_${versions.scala}:${versions.kafka}:test-sources",
+    kafka_server_common_test: "org.apache.kafka:kafka-server-common:${versions.kafka}:test",
+    kafka_server_common_test_sources: "org.apache.kafka:kafka-server-common:${versions.kafka}:test-sources",
     kafkaClients_test: "org.apache.kafka:kafka-clients:${versions.kafka}:test",
     kafkaClients_test_sources: "org.apache.kafka:kafka-clients:${versions.kafka}:test-sources",
     kafkaSchemaRegistry: "io.confluent:kafka-schema-registry:${versions.confluent}",

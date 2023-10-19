@@ -75,7 +75,7 @@ class PseudonymizeAppIntTest {
 
             String inputKey = "accountA";
             ActionEvent inputEvent = ActionEvent.newBuilder()
-                    .setEventId(randomUUID().toString())
+                    .setEventId(randomUUID())
                     .setEventTime(Instant.now())
                     .setAccount(Account.newBuilder()
                             .setAccountId(inputKey)
@@ -121,7 +121,7 @@ class PseudonymizeAppIntTest {
 
             String inputKey = "accountA";
             ActionEvent inputEvent = ActionEvent.newBuilder()
-                    .setEventId(randomUUID().toString())
+                    .setEventId(randomUUID())
                     .setEventTime(Instant.now())
                     .setAccount(Account.newBuilder()
                             .setAccountId(inputKey)

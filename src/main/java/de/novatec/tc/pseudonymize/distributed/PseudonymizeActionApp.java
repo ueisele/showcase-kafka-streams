@@ -103,7 +103,7 @@ public class PseudonymizeActionApp {
                                 noPseudonymAccountStream
                                     .mapValues((accountId, actionEventAndPseudonymAccount) ->
                                             CreatePseudonymAccountCommand.newBuilder()
-                                                    .setEventId(randomUUID().toString())
+                                                    .setEventId(randomUUID())
                                                     .setEventTime(Instant.now())
                                                     .setAccount(actionEventAndPseudonymAccount.getKey().getAccount()).build())
                                     .to(appConfigs.topicName("command.output"), Produced.with(stringSerde, commandSerde));
@@ -116,7 +116,7 @@ public class PseudonymizeActionApp {
                             Branched.withConsumer(pseudonymAccountStream -> pseudonymAccountStream
                                     .mapValues((accountId, actionEventAndPseudonymAccount) ->
                                             ActionEvent.newBuilder(actionEventAndPseudonymAccount.getKey())
-                                                    .setEventId(randomUUID().toString())
+                                                    .setEventId(randomUUID())
                                                     .setAccount(Account.newBuilder(actionEventAndPseudonymAccount.getValue()).build())
                                                     .build())
                                     .to(appConfigs.topicName("action.output"), Produced.with(stringSerde, actionEventSerde)))
@@ -206,7 +206,7 @@ public class PseudonymizeActionApp {
                     final KeyValue<String, ActionEvent> original = it.next();
                     final String pseudonymizedAccountId = pseudonymAccount.getAccount().getAccountId();
                     final ActionEvent pseudonymizedActionEvent = ActionEvent.newBuilder(original.value)
-                            .setEventId(randomUUID().toString())
+                            .setEventId(randomUUID())
                             .setAccountBuilder(Account.newBuilder(pseudonymAccount.getAccount())).build();
                     pseudonymizedEvents.add(new KeyValue<>(pseudonymizedAccountId, pseudonymizedActionEvent));
                 }

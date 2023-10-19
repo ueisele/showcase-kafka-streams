@@ -33,7 +33,7 @@ class PseudonymizeAppTest {
             // Produce some input data to the input topic.
             String inputKey = "accountA";
             ActionEvent inputEvent = ActionEvent.newBuilder()
-                    .setEventId(randomUUID().toString())
+                    .setEventId(randomUUID())
                     .setEventTime(Instant.now())
                     .setAccount(Account.newBuilder()
                             .setAccountId(inputKey)
@@ -51,7 +51,7 @@ class PseudonymizeAppTest {
             assertThat(receivedEvent.value.getAccount().getAccountId()).isNotEqualTo(inputEvent.getAccount().getAccountId());
             assertThat(receivedEvent.value.getAccount().getAccountName()).isNotBlank();
             assertThat(receivedEvent.value.getAccount().getAccountName()).isNotEqualTo(inputEvent.getAccount().getAccountName());
-            assertThat(receivedEvent.value.getEventId()).isNotBlank();
+            assertThat(receivedEvent.value.getEventId()).isNotNull();
             assertThat(receivedEvent.value.getEventId()).isNotEqualTo(inputEvent.getEventId());
             assertThat(receivedEvent.value.getEventTime()).isEqualTo(inputEvent.getEventTime());
             assertThat(receivedEvent.value.getAction()).isEqualTo(inputEvent.getAction());
@@ -66,7 +66,7 @@ class PseudonymizeAppTest {
             // Produce some input data to the input topic.
             String inputKeyA = "accountA";
             ActionEvent inputEventA1 = ActionEvent.newBuilder()
-                    .setEventId(randomUUID().toString())
+                    .setEventId(randomUUID())
                     .setEventTime(Instant.now())
                     .setAccount(Account.newBuilder()
                             .setAccountId(inputKeyA)
@@ -75,7 +75,7 @@ class PseudonymizeAppTest {
                     .build();
             scope.input.pipeInput(inputKeyA, inputEventA1);
             ActionEvent inputEventA2 = ActionEvent.newBuilder()
-                    .setEventId(randomUUID().toString())
+                    .setEventId(randomUUID())
                     .setEventTime(Instant.now())
                     .setAccount(Account.newBuilder()
                             .setAccountId(inputKeyA)
@@ -106,7 +106,7 @@ class PseudonymizeAppTest {
             // Produce some input data to the input topic.
             String inputKeyA = "accountA";
             ActionEvent inputEventA1 = ActionEvent.newBuilder()
-                    .setEventId(randomUUID().toString())
+                    .setEventId(randomUUID())
                     .setEventTime(Instant.now())
                     .setAccount(Account.newBuilder()
                             .setAccountId(inputKeyA)
@@ -116,7 +116,7 @@ class PseudonymizeAppTest {
             scope.input.pipeInput(inputKeyA, inputEventA1);
             String inputKeyB = "accountB";
             ActionEvent inputEventB1 = ActionEvent.newBuilder()
-                    .setEventId(randomUUID().toString())
+                    .setEventId(randomUUID())
                     .setEventTime(Instant.now())
                     .setAccount(Account.newBuilder()
                             .setAccountId(inputKeyB)
@@ -145,7 +145,7 @@ class PseudonymizeAppTest {
         // Create input data
         String inputKeyA = "accountA";
         ActionEvent inputEventA1 = ActionEvent.newBuilder()
-                .setEventId(randomUUID().toString())
+                .setEventId(randomUUID())
                 .setEventTime(Instant.now())
                 .setAccount(Account.newBuilder()
                         .setAccountId(inputKeyA)

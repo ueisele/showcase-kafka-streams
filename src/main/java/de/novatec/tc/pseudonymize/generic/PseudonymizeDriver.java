@@ -56,7 +56,7 @@ public class PseudonymizeDriver {
             Random random = new Random();
             Account account = accounts.get(random.nextInt(accounts.size()));
             ActionEvent event = ActionEvent.newBuilder()
-                    .setEventId(randomUUID().toString())
+                    .setEventId(randomUUID())
                     .setEventTime(Instant.now())
                     .setAccount(Account.newBuilder(account).build())
                     .setAction(actions.get((int) (random() * actions.size() - 1)))
@@ -69,7 +69,7 @@ public class PseudonymizeDriver {
             Random random = new Random();
             Account account = accounts.get(random.nextInt(accounts.size()));
             PositionEvent event = PositionEvent.newBuilder()
-                    .setEventId(randomUUID().toString())
+                    .setEventId(randomUUID())
                     .setEventTime(Instant.now())
                     .setAccount(Account.newBuilder(account).build())
                     .setLatitude((Math.random() * 180) - 90)

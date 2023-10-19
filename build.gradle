@@ -2,8 +2,8 @@ import java.nio.charset.StandardCharsets
 
 plugins {
     id 'java'
-    id 'com.github.davidmc24.gradle.plugin.avro' version '1.2.1'
-    id 'com.github.johnrengelman.shadow' version '7.0.0'
+    id 'com.github.davidmc24.gradle.plugin.avro' version '1.9.1'
+    id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
 
 apply from: "$rootDir/dependencies.gradle"
@@ -11,8 +11,20 @@ apply from: "$rootDir/dependencies.gradle"
 group 'de.novatec.tc'
 version '0.1-SNAPSHOT'
 
-ext {
-    minJavaVersion = "17"
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+compileJava {
+    options.release = 21
+    options.encoding = StandardCharsets.UTF_8
+}
+
+avro {
+    fieldVisibility = "PRIVATE"
+    outputCharacterEncoding = StandardCharsets.UTF_8
 }
 
 dependencies {
@@ -33,6 +45,8 @@ dependencies {
     testImplementation libs.kafka
     testImplementation libs.kafka_test
     testImplementation libs.kafka_test_sources // required, because intellij does not automatically detect test sources
+    testImplementation libs.kafka_server_common_test
+    testImplementation libs.kafka_server_common_test_sources // required, because intellij does not automatically detect test sources
     testImplementation libs.kafkaClients_test
     testImplementation libs.kafkaClients_test_sources // required, because intellij does not automatically detect test sources
     testRuntimeOnly libs.bouncycastle // for ZK test
@@ -46,18 +60,6 @@ configurations.all {
         // check for updates every build for snapshot versions
         cacheChangingModulesFor 12, 'hours'
     }
-}
-
-sourceCompatibility = minJavaVersion
-targetCompatibility = minJavaVersion
-
-tasks.withType(JavaCompile) {
-    options.encoding = StandardCharsets.UTF_8
-}
-
-avro {
-    fieldVisibility = "PRIVATE"
-    outputCharacterEncoding = StandardCharsets.UTF_8
 }
 
 test {

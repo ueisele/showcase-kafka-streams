@@ -113,7 +113,7 @@ public class PseudonymProviderApp {
             PseudonymAccountEvent pseudonymAccountEvent = pseudonymStore.get(accountId);
             if (pseudonymAccountEvent == null) {
                 pseudonymAccountEvent = PseudonymAccountEvent.newBuilder()
-                        .setEventId(randomUUID().toString())
+                        .setEventId(randomUUID())
                         .setEventTime(Instant.now())
                         .setAccount(Account.newBuilder()
                                 .setAccountId(randomUUID().toString())

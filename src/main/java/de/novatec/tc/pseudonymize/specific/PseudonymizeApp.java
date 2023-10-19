@@ -118,7 +118,7 @@ public class PseudonymizeApp {
             final ActionEvent pseudonymizedEvent;
             if (event != null) {
                 pseudonymizedEvent = ActionEvent.newBuilder(event)
-                        .setEventId(randomUUID().toString())
+                        .setEventId(randomUUID())
                         .setAccount(Account.newBuilder(pseudonymAccount).build())
                         .build();
             } else {

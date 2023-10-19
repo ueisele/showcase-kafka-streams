@@ -49,7 +49,7 @@ public class PseudonymProviderDriver {
             Random random = new Random();
             Account account = accounts.get(random.nextInt(accounts.size()));
             CreatePseudonymAccountCommand command = CreatePseudonymAccountCommand.newBuilder()
-                    .setEventId(randomUUID().toString())
+                    .setEventId(randomUUID())
                     .setEventTime(Instant.now())
                     .setAccount(account)
                     .build();
